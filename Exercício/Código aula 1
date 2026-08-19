@@ -1,0 +1,150 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// --- CLASSE ROUPA ---
+class Roupa {
+    private String codigoBarras;
+    private String tamanho;
+    private int quantidadeEstoque;
+
+    public Roupa(String codigoBarras, String tamanho, int quantidadeEstoque) {
+        this.codigoBarras = codigoBarras;
+        this.tamanho = tamanho;
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+
+    public String getCodigoBarras() {
+        return codigoBarras;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public int getQuantidadeEstoque() {
+        return quantidadeEstoque;
+    }
+
+    public void setQuantidadeEstoque(int quantidadeEstoque) {
+        this.quantidadeEstoque = quantidadeEstoque;
+    }
+}
+
+// --- CLASSE CLIENTE ---
+class Cliente {
+    private String cpf;
+    private List<Roupa> roupasCompradas;
+
+    public Cliente(String cpf) {
+        this.cpf = cpf;
+        this.roupasCompradas = new ArrayList<>();
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public List<Roupa> getRoupasCompradas() {
+        return roupasCompradas;
+    }
+
+    public void comprar(Roupa roupa) {
+        if (roupa.getQuantidadeEstoque() > 0) {
+            this.roupasCompradas.add(roupa);
+            roupa.setQuantidadeEstoque(roupa.getQuantidadeEstoque() - 1);
+            System.out.println("Compra realizada: Cliente " + this.cpf + " comprou Roupa " + roupa.getCodigoBarras());
+        } else {
+            System.out.println("Erro: Roupa " + roupa.getCodigoBarras() + " esgotada no estoque.");
+        }
+    }
+}
+
+// --- CLASSE SISTEMA DA LOJA ---
+class SistemaLoja {
+    private List<Roupa> estoque;
+    private List<Cliente> clientes;
+
+    public SistemaLoja() {
+        this.estoque = new ArrayList<>();
+        this.clientes = new ArrayList<>();
+    }
+
+    public void cadastrarRoupa(Roupa roupa) {
+        this.estoque.add(roupa);
+    }
+
+    public void cadastrarCliente(Cliente cliente) {
+        this.clientes.add(cliente);
+    }
+
+    // Pergunta 1: Quais foram as roupas compradas por um cliente?
+    public List<String> roupasCompradasPorCliente(String cpf) {
+        List<String> codigosRoupas = new ArrayList<>();
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                for (Roupa roupa : cliente.getRoupasCompradas()) {
+                    codigosRoupas.add(roupa.getCodigoBarras());
+                }
+                break; // Achou o cliente, não precisa continuar procurando
+            }
+        }
+        return codigosRoupas;
+    }
+
+    // Pergunta 2: Quais são os clientes que já compraram uma determinada roupa?
+    public List<String> clientesCompraramRoupa(String codigoBarras) {
+        List<String> cpfsClientes = new ArrayList<>();
+        for (Cliente cliente : clientes) {
+            for (Roupa roupa : cliente.getRoupasCompradas()) {
+                if (roupa.getCodigoBarras().equals(codigoBarras)) {
+                    cpfsClientes.add(cliente.getCpf());
+                    break; // Evita adicionar o CPF duas vezes se o cliente comprou 2x a mesma peça
+                }
+            }
+        }
+        return cpfsClientes;
+    }
+
+    // Pergunta 3: Quantos exemplares possuem de uma determinada roupa?
+    public int consultarEstoque(String codigoBarras) {
+        for (Roupa roupa : estoque) {
+            if (roupa.getCodigoBarras().equals(codigoBarras)) {
+                return roupa.getQuantidadeEstoque();
+            }
+        }
+        return 0; // Retorna 0 caso a roupa não esteja cadastrada
+    }
+}
+
+// --- CLASSE MAIN 
+public class Main {
+    public static void main(String[] args) {
+        SistemaLoja sistema = new SistemaLoja();
+
+        Roupa camisa = new Roupa("12345", "M", 10);
+        Roupa calca = new Roupa("67890", "G", 5);
+        sistema.cadastrarRoupa(camisa);
+        sistema.cadastrarRoupa(calca);
+
+        Cliente cliente1 = new Cliente("111.111.111-11");
+        Cliente cliente2 = new Cliente("222.222.222-22");
+        sistema.cadastrarCliente(cliente1);
+        sistema.cadastrarCliente(cliente2);
+
+        System.out.println("--- REGISTRO DE COMPRAS ---");
+        cliente1.comprar(camisa);
+        cliente1.comprar(calca);
+        cliente2.comprar(camisa);
+
+        System.out.println("\n--- RESPONDENDO ÀS PERGUNTAS DO EXERCÍCIO ---");
+
+        System.out.println("1. Roupas compradas pelo CPF 111.111.111-11: " 
+                + sistema.roupasCompradasPorCliente("111.111.111-11"));
+
+        System.out.println("2. Clientes (CPFs) que compraram a roupa 12345: " 
+                + sistema.clientesCompraramRoupa("12345"));
+
+        System.out.println("3. Quantidade de exemplares restantes da roupa 12345: " 
+                + sistema.consultarEstoque("12345"));
+    }
+}
