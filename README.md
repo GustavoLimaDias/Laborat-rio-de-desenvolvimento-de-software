@@ -87,8 +87,8 @@ Pré-requisitos: [Node.js](https://nodejs.org/) 18+ instalado.
 
 ```bash
 # 1. Clonar o repositório
-git clone https://github.com/seu-usuario/seu-repo.git
-cd portfolio-gustavo
+git clone https://github.com/GustavoLimaDias/Laborat-rio-de-desenvolvimento-de-software.git
+cd Laborat-rio-de-desenvolvimento-de-software
 
 # 2. Instalar as dependências
 npm install
