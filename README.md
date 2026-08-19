@@ -24,11 +24,11 @@ implementação em código:
 
 | Sobre Mim | Projetos |
 |---|---|
-| ![Wireframe da página Sobre Mim](Wireframes/Captura%20de%20tela%202026-08-19%20010416.png) | ![Wireframe da página Projetos](Wireframes/Captura%20de%20tela%202026-08-19%20010505.png) |
+| ![Wireframe da página Sobre Mim](docs/wireframes/sobre-mim.png) | ![Wireframe da página Projetos](docs/wireframes/projetos.png) |
 
 | Experiências | Contato |
 |---|---|
-| ![Wireframe da página Experiências](Wireframes/Captura%20de%20tela%202026-08-19%20010740.png) | ![Wireframe da página Contato](Wireframes/Captura%20de%20tela%202026-08-19%20010559.png) |
+| ![Wireframe da página Experiências](docs/wireframes/experiencias.png) | ![Wireframe da página Contato](docs/wireframes/contato.png) |
 
 🔗 Link do arquivo no Figma: https://www.figma.com/proto/E75sF3iSngiUkqNMIaz3Pr/Untitled?node-id=0-1&t=knZ4hX3ciSFSmovz-1
 
