@@ -17,10 +17,9 @@ Seções previstas (conforme especificação do laboratório):
 - **Experiências** — trajetória profissional e acadêmica
 - **Contato** — ícones para e-mail, WhatsApp e LinkedIn, além de formulário de contato
 
-## Wireframes (Figma — média fidelidade)
+## Wireframes (Figma)
 
-Protótipos de baixa/média fidelidade das 4 páginas, feitos no Figma antes da
-implementação em código:
+Protótipos das 4 páginas, feitos no Figma antes da implementação em código:
 
 | Sobre Mim | Projetos |
 |---|---|
