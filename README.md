@@ -107,4 +107,3 @@ O projeto abrirá em `http://localhost:5173` por padrão.
 
 **Gustavo Lima Dias**
 Estudante de Engenharia de Software — PUC Minas
-Estagiário de Desenvolvimento de Software — Vallourec
